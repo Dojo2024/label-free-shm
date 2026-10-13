@@ -1,0 +1,32 @@
+{
+ "structure": "KW51",
+ "committed_before_scoring": true,
+ "prereg": "reports/cpass_2026-10-13.md",
+ "data": {"file": "data/kw51/monitoring/trackedmodes/trackedmodes.mat", "zenodo": "10.5281/zenodo.3745914",
+          "temperature_channel": "tBD31A", "temperature_sensitivity_channel": "tVL"},
+ "modes_primary": [3, 5, 6, 9, 10, 12, 13, 14],
+ "modes_secondary": [6, 9, 13],
+ "periods": {
+  "phase_I": ["2018-10-01", "2019-04-19"],
+  "cold_spell": ["2019-01-19", "2019-02-02"],
+  "healthy_holdout": ["2019-04-20", "2019-05-14"],
+  "retrofit_works_excluded": ["2019-05-15", "2019-09-27"],
+  "post_retrofit": ["2019-09-28", "2020-01-15"]
+ },
+ "protocol_B_blocks": [["2018-10-01", "2018-11-19"], ["2018-11-20", "2019-01-08"], ["2019-01-09", "2019-02-27"], ["2019-02-28", "2019-04-19"]],
+ "changes": [
+  {"id": 1, "name": "retrofit", "state_from": "post_retrofit", "zone": "diagonal_connections", "direction": "stiffening",
+   "added_mass_kg_per_box": 333, "note": "boxes reinforcing the diagonal-to-arch and diagonal-to-deck connections"}
+ ],
+ "changed_threshold": {"multiplier_outside": [0.9, 1.1]},
+ "frost": {"tau_days": 5, "window_days": 30, "sensitivity_tau_days": [3, 15], "nested_tau_grid": [0.5, 1, 2, 3, 5, 7, 10, 15],
+           "sensitivity_window_days": [15, 60]},
+ "temperature_model": "log f = a + b T + c min(T - T0, 0) + d F; T0 in -3..4 step 0.5",
+ "alarm": {"statistic": "D2 = r' Sigma^-1 r over the 8 primary modes", "limit": 20.09, "chi2_df": 8, "quantile": 0.99},
+ "e_kw51": {"confirm": {"false_alarm_below_2C_max": 0.058, "both_protocols": ["A", "B"], "cold_spell_fewer_alarms_than": "hinge",
+                        "post_retrofit_alarm_share_min": 0.5},
+            "partial_min_gain_points": 2.0, "kill_gain_below_points": 2.0},
+ "fe_acceptance": {"fe_modes_for_tracked_1_to_14": [1, 2, 3, 4, 5, 6, 7, 15, 20, 25, 27, 30, 39, 41], "max_rel_error": 0.03,
+                   "params": {"Es_rel": 1, "hb_rel": 1.1, "kxx": null, "Id_rel": 0.06, "Ad_rel": 0.78, "fixed": 1},
+                   "reference": "Phase I mean identified frequencies"}
+}
